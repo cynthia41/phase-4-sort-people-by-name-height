@@ -1,0 +1,50 @@
+Sure, I'll explain the code line by line:
+
+ruby
+Copy code
+def sort_names_by_height(names, heights)
+This line defines a method called sort_names_by_height that takes two parameters: names and heights. The method will sort the names array based on the corresponding heights in the heights array.
+
+ruby
+Copy code
+  # Combine names and heights into a single array of pairs
+  people = names.zip(heights)
+Here, the zip method is used to combine the names and heights arrays into a new array called people. zip takes each element from both arrays at the same index and groups them into pairs. For example, names.zip(heights) will result in the following array of pairs:
+
+css
+Copy code
+[["Alice", 165], ["Bob", 180], ["Charlie", 155], ["David", 175]]
+Each pair contains a name and its corresponding height.
+
+ruby
+Copy code
+  # Sort the array by heights in descending order
+  sorted_people = people.sort_by { |name, height| -height }
+The sort_by method is used to sort the people array in descending order based on the second element of each pair, which is the height. The syntax sort_by { |name, height| -height } tells Ruby to sort the array based on the negation of the height. This means that the array will be sorted in descending order of heights.
+
+ruby
+Copy code
+  # Extract the sorted names
+  sorted_names = sorted_people.map { |name, height| name }
+Here, the map method is used to extract the names from the sorted_people array. The map method applies the given block to each element of the array and returns a new array containing the results. In this case, we are only interested in the names, so we use { |name, height| name } to extract the first element (the name) from each pair in the sorted_people array.
+
+ruby
+Copy code
+  return sorted_names
+end
+Finally, the sort_names_by_height method returns the sorted_names array, which contains the names sorted in descending order based on their corresponding heights.
+
+The example usage of the method follows:
+
+ruby
+Copy code
+names = ["Alice", "Bob", "Charlie", "David"]
+heights = [165, 180, 155, 175]
+sorted_names = sort_names_by_height(names, heights)
+puts sorted_names
+In this example, it will output the following sorted names:
+
+css
+Copy code
+["Bob", "David", "Alice", "Charlie"]
+The names are sorted in descending order of their corresponding heights, which are [180, 175, 165, 155].
